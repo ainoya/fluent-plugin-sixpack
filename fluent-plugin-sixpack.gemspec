@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |gem|
-  gem.name          = "fluent-plugin-growthforecast"
-  gem.version       = "0.2.7"
-  gem.authors       = ["TAGOMORI Satoshi"]
+  gem.name          = "fluent-plugin-sixpack"
+  gem.version       = "0.1.0"
+  gem.authors       = ["Naoki AINOYA"]
   gem.email         = ["tagomoris@gmail.com"]
-  gem.summary       = %q{Fluentd output plugin to post numbers to GrowthForecast (by kazeburo)}
-  gem.description   = %q{For GrowthForecast, see http://kazeburo.github.com/GrowthForecast/}
-  gem.homepage      = "https://github.com/tagomoris/fluent-plugin-growthforecast"
+  gem.summary       = %q{Fluentd output plugin to post numbers to sixpack (by seatgeek)}
+  gem.description   = %q{For sixpack, see http://sixpack.seatgeek.com }
+  gem.homepage      = "https://github.com/ainoya/fluent-plugin-sixpack"
   gem.license       = "APLv2"
 
   gem.files         = `git ls-files`.split($\)

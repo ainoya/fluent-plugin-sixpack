@@ -22,7 +22,7 @@ unless ENV.has_key?('VERBOSE')
   $log = nulllogger
 end
 
-require 'fluent/plugin/out_growthforecast'
+require 'fluent/plugin/out_sixpack'
 
 class Test::Unit::TestCase
 end
