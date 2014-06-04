@@ -131,7 +131,7 @@ class Fluent::SixpackOutput < Fluent::Output
       return sixpack_path, URI.encode_www_form({
                :experiment   => record[@key_experiment],
                :alternatives => record[@key_alternatives].split(','),
-               :alternative  => record[@key_alternative].split(','),
+               :alternative  => record[@key_alternative],
                :client_id    => record[@key_client_id],
              })
     when 'convert'
