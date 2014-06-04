@@ -85,7 +85,7 @@ Or, you can create an [Issue][is].
 
 ## License
 
-## Copyright
+### Copyright
 
 * Copyright (c) 2014- Naoki AINOYA
 * License
@@ -93,7 +93,7 @@ Or, you can create an [Issue][is].
 
 ## Other Licence
 
-## Copyright of fluent-plugin-growthforecast
+### Copyright of fluent-plugin-growthforecast
 
 This plugin implementation is based on [fluent-plugin-growthforecast](https://github.com/tagomoris/fluent-plugin-growthforecast).
 
