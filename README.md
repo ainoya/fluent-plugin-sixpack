@@ -65,6 +65,7 @@ With this configuration, out_sixpack posts urls below.
 
 ## TODO
 
+* More Test
 * More Documents
 * Full compatibility with sixpack api
 
