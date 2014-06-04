@@ -50,7 +50,7 @@ class SixpackOutputTest < Test::Unit::TestCase
 
   def test_non_keepalive
     d = create_driver(CONFIG_NON_KEEPALIVE, 'test.metrics')
-    ['red,', 'blue', 'green'].each_with_index do |color, i|
+    ['red', 'blue', 'green'].each_with_index do |color, i|
       d.emit({'record_type' => 'participate',
              'alternatives' => 'red,blue,green',
              'alternative'  =>  color,
@@ -82,7 +82,7 @@ class SixpackOutputTest < Test::Unit::TestCase
 
   def test_threading
     d = create_driver(CONFIG_THREADING_KEEPALIVE, 'test.metrics')
-    ['red,', 'blue', 'green'].each_with_index do |color, i|
+    ['red', 'blue', 'green'].each_with_index do |color, i|
       d.emit({'record_type' => 'participate',
              'alternatives' => 'red,blue,green',
              'alternative'  =>  color,
@@ -114,7 +114,7 @@ class SixpackOutputTest < Test::Unit::TestCase
 
   def test_threading_non_keepalive
     d = create_driver(CONFIG_THREADING_NON_KEEPALIVE, 'test.metrics')
-    ['red,', 'blue', 'green'].each_with_index do |color, i|
+    ['red', 'blue', 'green'].each_with_index do |color, i|
       d.emit({'record_type' => 'participate',
              'alternatives' => 'red,blue,green',
              'alternative'  =>  color,
@@ -179,7 +179,7 @@ class SixpackOutputTest < Test::Unit::TestCase
 
           @posted.push({
               :alternatives=> req.query["alternatives"],
-              :alternative => req.query["selected"],
+              :alternative => req.query["alternative"],
               :client_id   => req.query["client_id"],
               :experiment  => req.query["experiment"]
             })
@@ -236,7 +236,7 @@ class SixpackOutputTest < Test::Unit::TestCase
     client = Net::HTTP.start(host, port)
 
     assert_equal '200', client.request_get('/').code
-    assert_equal '200', client.request_get('/participate?experiment=experiment_test_threading_non_keepalive&alternatives=red&alternatives=blue&alternatives=green&selected=green&client_id=0000-0000-0000-0001').code
+    assert_equal '200', client.request_get('/participate?experiment=experiment_test_threading_non_keepalive&alternatives=red&alternatives=blue&alternatives=green&alternative=green&client_id=0000-0000-0000-0001').code
 
     assert_equal 1, @posted.size
 

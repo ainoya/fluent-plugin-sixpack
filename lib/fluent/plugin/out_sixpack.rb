@@ -11,7 +11,7 @@ class Fluent::SixpackOutput < Fluent::Output
   config_param :sixpackapi_url, :string
   config_param :key_experiment, :default   => 'experiment'
   config_param :key_alternatives, :default => 'alternatives'
-  config_param :key_selected, :default => 'alternative'
+  config_param :key_alternative, :default     => 'alternative'
   config_param :key_client_id, :default    => 'client_id'
   config_param :key_record_type, :default  => 'record_type'
 
@@ -131,7 +131,7 @@ class Fluent::SixpackOutput < Fluent::Output
       return sixpack_path, URI.encode_www_form({
                :experiment   => record[@key_experiment],
                :alternatives => record[@key_alternatives].split(','),
-               :selected     => record[@key_selected].split(','),
+               :alternative  => record[@key_alternative].split(','),
                :client_id    => record[@key_client_id],
              })
     when 'convert'
