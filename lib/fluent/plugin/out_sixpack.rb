@@ -148,7 +148,7 @@ class Fluent::SixpackOutput < Fluent::Output
   def post_request(event)
     uri = URI.parse(@sixpackapi_url)
     uri.path, uri.query = map_sixpack_path_with_query(event[:record])
-    req = Net::HTTP::Get.new(uri)
+    req = Net::HTTP::Get.new(uri.request_uri)
     if @auth and @auth == :basic
       req.basic_auth(@username, @password)
     end
