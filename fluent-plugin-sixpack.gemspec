@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-sixpack"
   gem.version       = "0.1.0"
   gem.authors       = ["Naoki AINOYA"]
-  gem.email         = ["tagomoris@gmail.com"]
+  gem.email         = ["ainonic@gmail.com"]
   gem.summary       = %q{Fluentd output plugin to post numbers to sixpack (by seatgeek)}
   gem.description   = %q{For sixpack, see http://sixpack.seatgeek.com }
   gem.homepage      = "https://github.com/ainoya/fluent-plugin-sixpack"
