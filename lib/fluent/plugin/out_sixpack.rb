@@ -180,7 +180,7 @@ class Fluent::SixpackOutput < Fluent::Output
   def post_keepalive(events) # [{:tag=>'',:name=>'',:value=>X}]
     return if events.size < 1
 
-    # gf host/port is same for all events (host is from configuration)
+    # sixpack host/port is same for all events (host is from configuration)
     host,port = connect_to
 
     requests = events.map{|e| post_request(e)}
