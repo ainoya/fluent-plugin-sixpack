@@ -14,22 +14,34 @@ About Sixpack, see:
 
 For messages to participate A/B test such as:
 
-    tag:your.arbitrary.tag {"experiment":"header-color", "alternatives":"red,green,blue", "alternative":"red", "client_id":"ID-0000-0001"}
+    tag:your.arbitrary.tag {"record_type":"participate", "experiment":"header-color", "alternatives":"red,green,blue", "alternative":"red", "client_id":"ID-0000-0001"}
 
 Or messages to convert A/B test such as
 
-    tag:your.arbitrary.tag {"experiment":"header-color", "client_id":"ID-0000-0001"}
+    tag:your.arbitrary.tag {"record_type":"convert", "experiment":"header-color", "client_id":"ID-0000-0001"}
 
-Configuration example for graphs in sixpack with POST api url `http://sixpack:5000/(participate|convert)`
+Configuration example for graphs in sixpack with POST api url `http://sixpack:5000/(participate|convert)`. You must set this parameter.
 
     <match app.abtest.log>
       type sixpack
-      gfapi_url http://sixpack.local:5000/
+      sixpackapi_url http://sixpack.local:5000/
     </match>
 
 With this configuration, out_sixpack posts urls below.
 
 ## Parameters
+
+### Sixpack parameters
+
+You can change assignment between param keys and values, with using settings below.
+
+- `key_experiment, :default   => 'experiment'`
+- `key_alternatives, :default => 'alternatives'`
+- `key_alternative, :default  => 'alternative'`
+- `key_client_id, :default    => 'client_id'`
+- `key_record_type, :default  => 'record_type'`
+
+### Configuration parameters
 
 * background_post
 
