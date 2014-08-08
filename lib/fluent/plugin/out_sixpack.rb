@@ -11,9 +11,10 @@ class Fluent::SixpackOutput < Fluent::Output
   config_param :sixpackapi_url, :string
   config_param :key_experiment, :default   => 'experiment'
   config_param :key_alternatives, :default => 'alternatives'
-  config_param :key_alternative, :default     => 'alternative'
+  config_param :key_alternative, :default  => 'alternative'
   config_param :key_client_id, :default    => 'client_id'
   config_param :key_record_type, :default  => 'record_type'
+  config_param :key_kpi, :string, :default => 'kpi'
 
   config_param :user_agent, :default       => 'user_agent'
   config_param :ip_address, :default       => 'ip_address'
@@ -135,14 +136,21 @@ class Fluent::SixpackOutput < Fluent::Output
                :client_id    => record[@key_client_id],
              })
     when 'convert'
-      return sixpack_path, URI.encode_www_form({
-               :experiment   => record[@key_experiment],
-               :client_id    => record[@key_client_id],
-             })
+      return sixpack_path, form_encode_params_convert(record)
     else
       log.warn 'failed to map sixpack path and query'
       raise
     end
+  end
+
+  def form_encode_params_convert(record)
+    params = {
+       :experiment   => record[@key_experiment],
+       :client_id    => record[@key_client_id],
+    }
+    params.merge!({:kpi => record[@key_kpi]}) if(record[@key_kpi])
+
+    return URI.encode_www_form(params)
   end
 
   def post_request(event)

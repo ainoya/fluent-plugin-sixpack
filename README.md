@@ -21,6 +21,8 @@ For messages to participate A/B test such as:
 Or messages to convert A/B test such as
 
     tag:your.arbitrary.tag {"record_type":"convert", "experiment":"header-color", "client_id":"ID-0000-0001"}
+    #you can also specify kpi id
+    tag:your.arbitrary.tag {"record_type":"convert", "experiment":"header-color", "client_id":"ID-0000-0001", "kpi":"conversion-100dollar"}
 
 Configuration example for graphs in sixpack with POST api url `http://sixpack:5000/(participate|convert)`. You must set this parameter.
 
@@ -42,6 +44,7 @@ You can change assignment between param keys and values, with using settings bel
 - `key_alternative, :default  => 'alternative'`
 - `key_client_id, :default    => 'client_id'`
 - `key_record_type, :default  => 'record_type'`
+- `key_kpi ,        :default  => 'kpi'`
 
 ### Configuration parameters
 

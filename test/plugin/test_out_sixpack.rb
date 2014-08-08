@@ -38,6 +38,21 @@ class SixpackOutputTest < Test::Unit::TestCase
     assert_equal 'experiment_test_convert', @posted[0][:experiment]
   end
 
+  def test_convert_with_kpi
+    d = create_driver(CONFIG_NON_KEEPALIVE, 'test.metrics')
+    d.emit({'record_type' => 'convert',
+            'client_id'  => "0000-0000-0000-0000",
+            'kpi' => "kpi",
+            'experiment' => 'experiment_test_convert'})
+    sleep 0.5 # wait internal posting thread loop
+
+    assert_equal 1, @posted.size
+
+    assert_equal '0000-0000-0000-0000', @posted[0][:client_id]
+    assert_equal 'experiment_test_convert', @posted[0][:experiment]
+    assert_equal 'kpi', @posted[0][:kpi]
+  end
+
   def test_invalid_type
     d = create_driver(CONFIG_NON_KEEPALIVE, 'test.metrics')
     d.emit({'record_type' => 'invalid_type',
@@ -177,20 +192,24 @@ class SixpackOutputTest < Test::Unit::TestCase
             # ok, authorization not required
           end
 
-          @posted.push({
+          post_param = {
               :alternatives=> req.query["alternatives"],
               :alternative => req.query["alternative"],
               :client_id   => req.query["client_id"],
               :experiment  => req.query["experiment"]
-            })
+            }
+
+          @posted.push(post_param)
 
           res.status = 200
         }
         srv.mount_proc('/convert') { |req,res|
-          @posted.push({
+          post_param = {
               :client_id   => req.query["client_id"],
               :experiment  => req.query["experiment"]
-            })
+            }
+          post_param.merge!({:kpi => req.query["kpi"]}) if req.query["kpi"]
+          @posted.push(post_param)
           res.status = 200
         }
         srv.mount_proc('/') { |req,res|
