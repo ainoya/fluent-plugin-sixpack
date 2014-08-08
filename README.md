@@ -3,6 +3,7 @@
 ## SixpackOutput
 
 [![Build Status](https://travis-ci.org/ainoya/fluent-plugin-sixpack.svg?branch=master)](https://travis-ci.org/ainoya/fluent-plugin-sixpack)
+[![Gem Version](https://badge.fury.io/rb/fluent-plugin-sixpack.svg)](http://badge.fury.io/rb/fluent-plugin-sixpack)
 
 [Fluentd](http://fluentd.org) plugin to execute A/B testing with application log.
 
